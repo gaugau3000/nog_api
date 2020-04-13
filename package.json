@@ -1,0 +1,43 @@
+{
+  "name": "nog_api",
+  "version": "0.1.0",
+  "main": "dist/app.js",
+  "repository": "https://github.com/gaugau3000/nog_api",
+  "author": "Gautier Pialat",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/app.js\"",
+    "start": "tsc && node dist/app.js",
+    "test": "NODE_ENV=test && jest --verbose",
+    "test-watch": "NODE_ENV=test && jest --verbose --watchAll"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/koa": "^2.11.3",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.0",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.11.0",
+    "@types/nodemailer": "^6.4.0",
+    "@types/nodemailer-direct-transport": "^1.0.31",
+    "@types/nodemailer-smtp-transport": "^2.7.4",
+    "@types/supertest": "^2.0.8",
+    "concurrently": "^5.1.0",
+    "jest": "^25.2.7",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.3.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^8.0.8",
+    "lodash": "^4.17.15",
+    "nodemailer": "^6.4.6"
+  }
+}
