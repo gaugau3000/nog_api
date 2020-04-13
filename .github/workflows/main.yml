@@ -15,3 +15,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: create docker test network
       run: docker network create ci
+    - name : run test smtp server
+      run: docker run -d --name mail_nog --network ci mailhog/mailhog
+    - name: build test image
+      run: docker build -t nog_api:test -f Dockerfile.test .
+    - name: run tests
+      run: docker run --network ci nog_api:test
