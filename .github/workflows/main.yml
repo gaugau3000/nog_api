@@ -21,3 +21,9 @@ jobs:
       run: docker build -t nog_api:test -f Dockerfile.test .
     - name: run tests
       run: docker run --network ci --env MAIl_HOST=mail_nog --env MAIl_PORT=1025 nog_api:test
+    - name: publish docker image to hub
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: gaugau3000/nog_api
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
