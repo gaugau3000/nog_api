@@ -51,5 +51,6 @@ jobs:
             docker pull ${GITHUB_REPOSITORY} &&
             docker run -d --restart unless-stopped --name ${CONTENER_NAME} 
             --env NODE_ENV=${APP_ENV} --env MAIl_HOST=notonlygeek_mail --env MAIl_PORT=25
+            --network notonlygeek
             ${GITHUB_REPOSITORY}:latest
         
