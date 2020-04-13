@@ -1,0 +1,17 @@
+name: Nog Api Ci
+
+
+on:
+  push:
+    branches: [ master ]
+  release:
+    types: [published]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: create docker test network
+      run: docker network create ci
