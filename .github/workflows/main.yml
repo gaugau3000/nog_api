@@ -20,4 +20,4 @@ jobs:
     - name: build test image
       run: docker build -t nog_api:test -f Dockerfile.test .
     - name: run tests
-      run: docker run --network ci nog_api:test
+      run: docker run --network ci --env MAIl_HOST=mail_nog --env MAIl_PORT=1025 nog_api:test
