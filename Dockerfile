@@ -7,8 +7,8 @@ RUN yarn install
 FROM node:12-stretch as test
 WORKDIR /usr/src/app
 COPY --from=install /usr/src/app .
-ARG MAIl_HOST mail_nog
-ARG MAIl_PORT 1025
+ENV MAIl_HOST mail_nog
+ENV MAIl_PORT 1025
 EXPOSE 3000
 RUN [ "yarn", "test" ]
 
