@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: create docker test network
-      run: docker network create ci
+      run: docker network create nog_test
     - name : run test smtp server
       run: docker run -d --name mail_nog --network nog_test mailhog/mailhog
     - name: run tests in docker image
