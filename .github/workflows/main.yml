@@ -1,12 +1,10 @@
 name: Nog Api Ci
 
-
 on:
   push:
     branches: [ master ]
   release:
     types: [published]
-
 
 jobs:
   test:
@@ -17,17 +15,16 @@ jobs:
     - name: create docker test network
       run: docker network create ci
     - name : run test smtp server
-      run: docker run -d --name mail_nog --network ci mailhog/mailhog
-    - name: build test image
-      run: docker build -t nog_api:test -f Dockerfile.test .
-    - name: run tests
-      run: docker run --network ci --env MAIl_HOST=mail_nog --env MAIl_PORT=1025 nog_api:test
+      run: docker run -d --name mail_nog --network nog_test mailhog/mailhog
+    - name: run tests in docker image
+      run: docker build --target test --network nog_test -t nog_test_tmp .
     - name: publish docker image to hub
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: gaugau3000/nog_api
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        buildoptions: "--target start"
   deploy:
     needs: [test]
     name: deploy 
