@@ -17,7 +17,7 @@ jobs:
     - name : run test smtp server
       run: docker run -d --name mail_nog --network nog_test mailhog/mailhog
     - name: run tests in docker image
-      run: docker build --target test --network nog_test -t nog_test_tmp .
+      run: docker build --target test --network nog_test .
     - name: publish docker image to hub
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
