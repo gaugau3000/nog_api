@@ -40,9 +40,11 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           script_stop: "true"
           envs: CONTENER_NAME, GITHUB_REPOSITORY, APP_ENV
-          script: |
-            cd /tmp
-            curl -O https://raw.githubusercontent.com/gaugau3000/nog_api/master/scripts/ci/deploy_container.sh
-            chmod +x ./deploy_container.sh && ./deploy_container.sh
+          script: >
+            cd /tmp &&
+            curl -O https://raw.githubusercontent.com/gaugau3000/nog_api/master/scripts/ci/deploy_container.sh &&
+            chmod +x ./deploy_container.sh &&
+            CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
+            APP_ENV=${APP_ENV} ./deploy_container.sh
             
         

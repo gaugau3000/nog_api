@@ -1,3 +1,4 @@
+#!/bin/bash
  docker build --target install_dev --cache-from=gaugau3000/nog_api:install_dev \
 --tag gaugau3000/nog_api:install_dev .
 docker build --target install_prod --cache-from=gaugau3000/nog_api:install_prod \

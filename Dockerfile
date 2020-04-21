@@ -1,9 +1,9 @@
-FROM node:12-stretch as install_dev
+FROM node:12-alpine as install_dev
 WORKDIR /app
 COPY . .
 RUN yarn install
 
-FROM node:12-stretch as install_prod
+FROM node:12-alpine as install_prod
 WORKDIR /app
 COPY package.json .
 RUN yarn install --production
@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=install_dev /app .
 RUN [ "yarn", "run", "tsc"]
 
-FROM node:12-stretch as start
+FROM node:12-alpine as start
 WORKDIR /app
 COPY --from=install_prod /app .
 COPY --from=build /app/dist/ dist/
