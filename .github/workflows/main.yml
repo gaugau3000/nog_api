@@ -43,6 +43,6 @@ jobs:
           script: |
             cd /tmp
             curl -O https://raw.githubusercontent.com/gaugau3000/nog_api/master/scripts/ci/deploy_container.sh
-            ./deploy_container.sh
+            chmod +x ./deploy_container.sh && ./deploy_container.sh
             
         
