@@ -9,7 +9,7 @@ ARG USER_GID=$USER_UID
 RUN apt-get update \
     && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
     # utils
-    && apt-get -y install git procps lsb-release  \
+    && apt-get -y install git procps lsb-release shellcheck \
     # manage dev user
     && usermod -u 1001 node \
     #&& groupadd --gid $USER_GID $USERNAME \
