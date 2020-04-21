@@ -26,6 +26,8 @@
 		"me-dutour-mathieu.vscode-github-actions",
 		"cschleiden.vscode-github-actions",
 		"streetsidesoftware.code-spell-checker",
-		"marquesmps.dockerfile-validator"
+		"marquesmps.dockerfile-validator",
+		"foxundermoon.shell-format",
+		"timonwong.shellcheck"
 	]
 }
