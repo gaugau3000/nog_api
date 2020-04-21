@@ -32,6 +32,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@master
         env:
+          APP_ENV: staging
           CONTENER_NAME: notonlygeek-api_staging
         with:
           host: ${{ secrets.HOST }}
