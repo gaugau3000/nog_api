@@ -6,7 +6,7 @@ const router = new Router({ prefix: '/email' })
 
 const stmp_config = {
   host: process.env.MAIl_HOST,
-  port: Number(process.env.MAIl_PORT),
+  port: Number(process.env.SMTP_PORT),
 }
 
 router.post("/", async (ctx:Koa.Context) => {

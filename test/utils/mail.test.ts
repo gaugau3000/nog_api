@@ -6,7 +6,7 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport'
 let transporter:Mail
 const working_stmp_config = {
     host: process.env.MAIl_HOST,
-    port: Number(process.env.MAIl_PORT),
+    port: Number(process.env.SMTP_PORT),
   }
 
 const not_working_stmp_config ={

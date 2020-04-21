@@ -16,7 +16,7 @@
 	],
 	"containerEnv":{
 		"MAIl_HOST": "mail_nog_dev",
-		"MAIl_PORT": "1025"
+		"SMTP_PORT": "1025"
 	},
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
