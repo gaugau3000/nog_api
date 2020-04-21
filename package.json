@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/app.js\"",
     "dev_start": "tsc && node dist/app.js",
-    "test": " jest --clearCache && rm -rf ./dist && NODE_ENV=test jest --verbose",
+    "test": " jest --clearCache && rm -rf ./dist || true && NODE_ENV=test jest --verbose",
     "test-watch": "NODE_ENV=test && jest --verbose --watchAll",
     "start":"node dist/app.js"
   },
