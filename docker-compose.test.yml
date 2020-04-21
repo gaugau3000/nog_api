@@ -1,0 +1,17 @@
+version: "3.4"
+services:
+  mail:
+    image: mailhog/mailhog
+    networks:
+      - nog_test
+  test:
+    image: gaugau3000/nog_api:test
+    environment:
+      MAIl_HOST: mail
+      SMTP_PORT: 1025
+    depends_on:
+      - mail
+    networks:
+      - nog_test
+networks:
+  nog_test:

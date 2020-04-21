@@ -10,21 +10,19 @@ jobs:
   test:
     name: publish tested image to docker hub
     runs-on: ubuntu-16.04
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
     - uses: actions/checkout@v2
-    - name: create docker test network
-      run: docker network create nog_test
-    - name : run test smtp server
-      run: docker run -d --name mail_nog --network nog_test mailhog/mailhog
-    - name: run tests in docker image
-      run: docker build --target test --network nog_test .
-    - name: publish docker image to hub
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: gaugau3000/nog_api
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        buildoptions: "--target start"
+    - name: pull images for caching purpose
+      run: scripts/ci/pull_from_cache.sh
+    - name: build image stages 
+      run: scripts/ci/build_images.sh
+    - name : run tests
+      run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
+    - name: publish docker images to hub
+      run: scripts/ci/publish_images.sh
   deploy:
     needs: [test]
     name: deploy 
@@ -34,7 +32,6 @@ jobs:
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@master
         env:
-          APP_ENV: staging
           CONTENER_NAME: notonlygeek-api_staging
         with:
           host: ${{ secrets.HOST }}
@@ -43,11 +40,9 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           script_stop: "true"
           envs: CONTENER_NAME, GITHUB_REPOSITORY, APP_ENV
-          script: >
-            docker stop ${CONTENER_NAME} || true && docker rm ${CONTENER_NAME} || true &&
-            docker pull ${GITHUB_REPOSITORY} &&
-            docker run -d --restart unless-stopped --name ${CONTENER_NAME} 
-            --env NODE_ENV=${APP_ENV} --env MAIl_HOST=notonlygeek_mail --env MAIl_PORT=25
-            --network notonlygeek
-            ${GITHUB_REPOSITORY}:latest
+          script: |
+            cd /tmp
+            curl -O https://raw.githubusercontent.com/gaugau3000/nog_api/master/scripts/ci/deploy_container.sh
+            ./deploy_container.sh
+            
         
