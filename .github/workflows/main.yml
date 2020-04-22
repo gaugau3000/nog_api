@@ -15,7 +15,7 @@ jobs:
     - uses: whoan/docker-build-with-cache-action@v5
       with:
         image_name: gaugau3000/nog_api
-        username: "${{ secrets.DOCKER_USERNAME }}"
+        username: gaugau3000
         password: "${{ secrets.DOCKER_PASSWORD }}"
     - name : run tests
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
