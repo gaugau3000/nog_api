@@ -21,30 +21,30 @@ jobs:
     - name : run tests
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
     - name: Copy deploy scripts to remote
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: ./scripts/remote/
-          remote: /tmp/nog_api/
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.DEPLOY_USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          privateKey: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT }}
-      - name: deploy api to staging server
-        uses: appleboy/ssh-action@master
-        env:
-          APP_ENV: staging
-          CONTENER_NAME: notonlygeek-api_staging
-          NETWORK : notonlygeek_staging
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.DEPLOY_USERNAME }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT }}
-          script_stop: "true"
-          envs: CONTENER_NAME, GITHUB_REPOSITORY, NETWORK
-          script: >
-            CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
-            NETWORK=${NETWORK} /tmp/nog_api/deploy_container.sh
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: ./scripts/remote/
+        remote: /tmp/nog_api/
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        privateKey: ${{ secrets.DEPLOY_KEY }}
+        port: ${{ secrets.DEPLOY_PORT }}
+    - name: deploy api to staging server
+      uses: appleboy/ssh-action@master
+      env:
+        APP_ENV: staging
+        CONTENER_NAME: notonlygeek-api_staging
+        NETWORK : notonlygeek_staging
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        port: ${{ secrets.DEPLOY_PORT }}
+        script_stop: "true"
+        envs: CONTENER_NAME, GITHUB_REPOSITORY, NETWORK
+        script: >
+          CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
+          NETWORK=${NETWORK} /tmp/nog_api/deploy_container.sh
             
         
