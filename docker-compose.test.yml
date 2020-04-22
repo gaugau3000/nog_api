@@ -5,7 +5,7 @@ services:
     networks:
       - nog_test
   test:
-    image: gaugau3000/nog_api:test
+    image: gaugau3000/nog_api-stages:3
     environment:
       MAIl_HOST: mail
       SMTP_PORT: 1025
