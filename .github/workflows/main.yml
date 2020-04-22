@@ -10,19 +10,15 @@ jobs:
   test:
     name: publish tested image to docker hub
     runs-on: ubuntu-16.04
-    env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
     - uses: actions/checkout@v2
-    - name: pull images for caching purpose
-      run: scripts/ci/pull_from_cache.sh
-    - name: build image stages 
-      run: scripts/ci/build_images.sh
+    - uses: whoan/docker-build-with-cache-action@v5
+      with:
+        image_name: gaugau3000/nog_api
+        username: "${{ secrets.DOCKER_USERNAME }}"
+        password: "${{ secrets.DOCKER_PASSWORD }}"
     - name : run tests
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
-    - name: publish docker images to hub
-      run: scripts/ci/publish_images.sh
   deploy:
     needs: [test]
     name: deploy 
