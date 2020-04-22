@@ -43,6 +43,7 @@ jobs:
         script_stop: "true"
         envs: CONTENER_NAME, GITHUB_REPOSITORY, NETWORK
         script: >
+          chmod +x /tmp/nog_api/deploy_container.sh &&
           CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
           NETWORK=${NETWORK} /tmp/nog_api/deploy_container.sh
             
