@@ -3,6 +3,7 @@ import koaLogger from "koa-logger";
 import koaJson  from "koa-json";
 import koaBodyParser from 'koa-bodyparser'
 
+
 import mailRouter from './routes/email'
 
 const app = new Koa();
@@ -12,5 +13,4 @@ app.use(koaJson());
 app.use(koaBodyParser());
 app.use(mailRouter.routes()).use(mailRouter.allowedMethods());
 
-
-export default app.listen(3000);
+export default app;

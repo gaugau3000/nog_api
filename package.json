@@ -6,11 +6,11 @@
   "author": "Gautier Pialat",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/app.js\"",
-    "dev_start": "tsc && node dist/app.js",
-    "test": " jest --clearCache && rm -rf ./dist || true && NODE_ENV=test jest --verbose",
-    "test-watch": "NODE_ENV=test && jest --verbose --watchAll",
-    "start":"node dist/app.js"
+    "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/server.js\"",
+    "dev_start": "tsc && node dist/server.js",
+    "test": " NODE_ENV=test jest --verbose",
+    "test-watch": "NODE_ENV=test jest --verbose --watchAll",
+    "start":"node dist/server.js"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",

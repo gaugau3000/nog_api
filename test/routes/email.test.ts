@@ -18,16 +18,14 @@ describe("make a post  request on email with valid attributes ", () => {
     
      mockedUtils.sendMail.mockResolvedValue({accepted: [ 'contact@notonlygeek.com' ]})
     
-    const response = await request(app)
+    const response = await request(app.callback())
       .post('/email')
       .send(email_body)
     expect(response.status).toEqual(200);
     expect(JSON.parse(response.text)).toHaveProperty('accepted',[ 'contact@notonlygeek.com' ])
   });
 
-  afterAll(() => {
-    app.close();
-  });
+ 
 });
 
 describe("make a post  request on /email with test missing attribute ", () => {
@@ -36,14 +34,12 @@ describe("make a post  request on /email with test missing attribute ", () => {
   delete email_body_missing_text_element.text
 
   it("should return a 406 status and give explaination ", async () => {
-    const response = await request(app)
+    const response = await request(app.callback())
       .post('/email')
       .send(email_body_missing_text_element)
     expect(response.status).toEqual(406);
     expect(response.text).toContain('The request need this elements')
   });
 
-  afterAll(() => {
-    app.close();
-  });
+  
 });

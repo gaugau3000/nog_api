@@ -34,18 +34,20 @@ jobs:
         env:
           APP_ENV: staging
           CONTENER_NAME: notonlygeek-api_staging
+          NETWORK : notonlygeek_staging
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
           script_stop: "true"
-          envs: CONTENER_NAME, GITHUB_REPOSITORY, APP_ENV
+          envs: CONTENER_NAME, GITHUB_REPOSITORY, NETWORK
           script: >
             cd /tmp &&
             curl -O https://raw.githubusercontent.com/gaugau3000/nog_api/master/scripts/ci/deploy_container.sh &&
             chmod +x ./deploy_container.sh &&
             CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
-            APP_ENV=${APP_ENV} ./deploy_container.sh
+            NETWORK=${NETWORK} ./deploy_container.sh &&
+            docker run --rm --network ${NETWORK} willwill/wait-for-it api:3000
             
         

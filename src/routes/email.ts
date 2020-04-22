@@ -1,20 +1,15 @@
 import Router from 'koa-router'
 import  Koa from "koa";
 import {sendMail,getSmtpTransport} from '../utils/utils'
+import {stmp_config} from '../config/config'
 
 const router = new Router({ prefix: '/email' })
-
-const stmp_config = {
-  host: process.env.MAIl_HOST,
-  port: Number(process.env.SMTP_PORT),
-}
 
 router.post("/", async (ctx:Koa.Context) => {
     const requiredRequestElement = ['from','to','subject','text']
     const isBodyHaveMissingElements = requiredRequestElement
                                       .map(n => ctx.request.body.hasOwnProperty(n))
                                       .some(r => !r)
-    
     if(isBodyHaveMissingElements)
     {
         ctx.status = 406
