@@ -27,7 +27,6 @@ jobs:
         remote: /tmp/nog_api/
         host: ${{ secrets.HOST }}
         username: ${{ secrets.DEPLOY_USERNAME }}
-        password: ${{ secrets.PASSWORD }}
         privateKey: ${{ secrets.DEPLOY_KEY }}
         port: ${{ secrets.DEPLOY_PORT }}
     - name: deploy api to staging server
