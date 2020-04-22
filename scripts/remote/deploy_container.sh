@@ -7,3 +7,4 @@ docker run -d --restart unless-stopped --name "${CONTENER_NAME}" \
 --network notonlygeek \
 "${GITHUB_REPOSITORY}":latest
 docker network connect "${NETWORK}" "${CONTENER_NAME}" --alias api
+docker run --rm --network "${NETWORK}" willwill/wait-for-it api:3000

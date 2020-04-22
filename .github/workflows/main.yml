@@ -7,7 +7,8 @@ on:
     types: [published]
 
 jobs:
-  test:
+  staging:
+    if: github.ref == 'refs/heads/master'
     name: publish tested image to docker hub
     runs-on: ubuntu-16.04
     steps:
@@ -19,13 +20,17 @@ jobs:
         password: "${{ secrets.DOCKER_PASSWORD }}"
     - name : run tests
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
-  deploy:
-    needs: [test]
-    name: deploy 
-    runs-on: ubuntu-16.04
-    steps:
+    - name: Copy deploy scripts to remote
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ./scripts/remote/
+          remote: /tmp/nog_api/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          privateKey: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
       - name: deploy api to staging server
-        if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@master
         env:
           APP_ENV: staging
@@ -39,11 +44,7 @@ jobs:
           script_stop: "true"
           envs: CONTENER_NAME, GITHUB_REPOSITORY, NETWORK
           script: >
-            cd /tmp &&
-            curl -O https://raw.githubusercontent.com/gaugau3000/nog_api/master/scripts/ci/deploy_container.sh &&
-            chmod +x ./deploy_container.sh &&
             CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
-            NETWORK=${NETWORK} ./deploy_container.sh &&
-            docker run --rm --network ${NETWORK} willwill/wait-for-it api:3000
+            NETWORK=${NETWORK} /tmp/nog_api/deploy_container.sh
             
         
