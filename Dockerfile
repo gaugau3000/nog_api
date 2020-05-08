@@ -19,7 +19,7 @@ CMD [ "yarn", "test"]
 FROM install_dev as build
 WORKDIR /app
 COPY --from=install_dev /app .
-RUN [ "yarn", "run", "tsc"]
+RUN [ "yarn", "build"]
 
 FROM node:12-alpine as start
 WORKDIR /app
