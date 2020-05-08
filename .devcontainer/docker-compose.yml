@@ -1,0 +1,34 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: gautier
+    volumes:
+      - ../:/home/gautier/nog_api
+      - /home/gautier/.ssh:/home/gautier/.ssh:ro
+      - /home/gautier/.gitconfig:/home/gautier/.gitconfig:ro
+      - nog_api-bashhistory:/home/gautier/commandhistory
+      - nog_api-vscode-server:/home/gautier/.vscode-server
+      - nog_api-server-insiders:/home/gautier/.vscode-server-insiders
+    environment:
+      MAIl_HOST: mail
+      SMTP_PORT: 1025
+    command: /bin/sh -c "while sleep 1000; do :; done"  
+    networks:
+      - nog_api
+  mail:
+    image: mailhog/mailhog
+    environment:
+      MH_CORS_ORIGIN: "*"
+    networks:
+      - nog_api
+
+networks:
+  nog_api:
+
+volumes:
+  nog_api-bashhistory:
+  nog_api-vscode-server:
+  nog_api-server-insiders:

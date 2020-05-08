@@ -1,23 +1,9 @@
 /* cSpell:disable */
 {
 	"name": "notonlygeek api",
-    "context": ".",
-    "dockerFile": "./Dockerfile",
-    "workspaceMount": "src=${localWorkspaceFolder}/,dst=/home/gautier/nog_api,type=bind,consistency=delegated",
+    "dockerComposeFile": "docker-compose.yml",
+	"service": "api",
     "workspaceFolder": "/home/gautier/nog_api",
-	"runArgs": ["-u", "gautier",
-		"-v", "/home/gautier/.ssh:/home/gautier/.ssh:ro",
-		"-v", "/home/gautier/.gitconfig:/home/gautier/.gitconfig:ro",
-		"-v", "nog_api-bashhistory:/home/gautier/commandhistory",
-		"-v", "nog_api-vscode-server:/home/gautier/.vscode-server",
-		"-v", "nog_api-server-insiders:/home/gautier/.vscode-server-insiders",
-		"--network=nog_dev",
-		"--name=api_nog_dev"
-	],
-	"containerEnv":{
-		"MAIl_HOST": "mail_nog_dev",
-		"SMTP_PORT": "1025"
-	},
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
@@ -28,6 +14,7 @@
 		"streetsidesoftware.code-spell-checker",
 		"marquesmps.dockerfile-validator",
 		"foxundermoon.shell-format",
-		"timonwong.shellcheck"
+		"timonwong.shellcheck",
+		"attilabuti.vscode-mjml"
 	]
 }
