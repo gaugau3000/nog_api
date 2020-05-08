@@ -6,6 +6,7 @@ import {stmp_config} from '../config/config'
 const router = new Router({ prefix: '/email' })
 
 router.post("/", async (ctx:Koa.Context) => {
+    console.log(`email post request : ${ctx.request.body}`)
     const requiredRequestElement = ['from','to','subject','text']
     const isBodyHaveMissingElements = requiredRequestElement
                                       .map(n => ctx.request.body.hasOwnProperty(n))
