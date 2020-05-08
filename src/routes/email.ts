@@ -31,7 +31,7 @@ router.post("/", async (ctx:Koa.Context) => {
        
   });
 
-router.get("/template/:name",async (ctx:Koa.Context) => {
+router.post("/template/:name",async (ctx:Koa.Context) => {
 
   ctx.response.body  = await genMail(ctx.params.name,ctx.request.body)
   
