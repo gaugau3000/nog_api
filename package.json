@@ -33,6 +33,10 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/mjml": "^4.0.4",
+    "mjml": "^4.6.3",
+    "vue":"^2.6.11",
+    "vue-server-renderer":"^2.6.11",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
     "koa-json": "^2.0.2",

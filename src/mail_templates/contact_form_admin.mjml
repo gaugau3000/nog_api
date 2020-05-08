@@ -1,0 +1,12 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text>name : {{name}}</mj-text>
+        <mj-text>email : {{email}}</mj-text>
+        <mj-text>message : {{message}}</mj-text>
+        <mj-text v-if="tel[0]">tel : {{tel}}</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

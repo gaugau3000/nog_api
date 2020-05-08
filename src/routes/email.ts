@@ -1,6 +1,6 @@
 import Router from 'koa-router'
 import  Koa from "koa";
-import {sendMail,getSmtpTransport} from '../utils/utils'
+import {sendMail,getSmtpTransport,genMail} from '../utils/utils'
 import {stmp_config} from '../config/config'
 
 const router = new Router({ prefix: '/email' })
@@ -16,7 +16,7 @@ router.post("/", async (ctx:Koa.Context) => {
         ctx.body= `The request need this elements : ${requiredRequestElement.toString()}`
         return
     }
-    await sendMail(ctx.request.body,await getSmtpTransport(stmp_config))
+    sendMail(ctx.request.body,await getSmtpTransport(stmp_config))
     .then((info) => {
       ctx.status = 200
       ctx.body= info
@@ -30,5 +30,11 @@ router.post("/", async (ctx:Koa.Context) => {
     
        
   });
+
+router.get("/template/:name",async (ctx:Koa.Context) => {
+
+  ctx.response.body  = await genMail(ctx.params.name,ctx.request.body)
+  
+})
 
 export default router
