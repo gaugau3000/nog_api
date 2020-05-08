@@ -15,7 +15,9 @@ services:
     environment:
       MAIl_HOST: mail
       SMTP_PORT: 1025
-    command: /bin/sh -c "while sleep 1000; do :; done"  
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    ports: 
+      - 3001:3000
     networks:
       - nog_api
   mail:
