@@ -18,7 +18,7 @@ let valid_email:SMTPTransport.Options =  {
     from: "contact@notonlygeek.com",
     to: 'contact@notonlygeek.com',
     subject: 'Formulaire de contact depuis le site',
-    text  : 'hello'
+    html  : 'hello'
   }
 
 describe("The connection to smtp server with node env params",() => {

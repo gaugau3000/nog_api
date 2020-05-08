@@ -54,7 +54,7 @@ export async function genMail(templateName:keyof typeof mailHeaders,data:any):Pr
       from: mailHeader.from,
       to: mailHeader.to ? mailHeader.to : data.email ,
       subject: mailHeader.subject,
-      text:mailBody
+      html:mailBody
     }
 
 }
