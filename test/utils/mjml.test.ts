@@ -9,10 +9,20 @@ describe(`Read file containing the text "dummy"`,() => {
 
 })
 
-describe("Giving a template with data", () => {
+describe("Giving the template contact_form_admin with valid datas", () => {
     it('should give a mail object', async() => {
         const data = {name:'Gautier',email:'test@test.com',message:'hello',tel:'054488877'}
         const mail:MailMessage = await genMail('contact_form_admin',data)
         
     })
+
+})
+
+describe("Giving the template contact_form_prospect with valid datas", () => {
+    it('should give a mail object', async() => {
+        const data = {name:'Gautier',email:'test@test.com',message:'hello',tel:'054488877'}
+        const mail:MailMessage = await genMail('contact_form_prospect',data)
+        
+    })
+
 })
