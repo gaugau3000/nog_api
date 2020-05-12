@@ -1,0 +1,76 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Gilroy" href="https://staging.notonlygeek.com/public/fonts" />
+    <mj-attributes>
+
+      <mj-class name="text" color="#232D41" font-size="22px" font-family="Gilroy" line-height="1.5" font-weight="normal" />
+      <mj-class name="contact-text" color="#232D41" font-size="22px" font-family="Gilroy" line-height="1.5" font-weight="bold" />
+      <mj-all padding="0" align="center"/>
+    </mj-attributes>
+    <mj-style>
+      a {
+        color: inherit;
+        text-decoration: inherit;
+        
+      }
+      a:hover{
+        color: #FF4641;
+      }
+    </mj-style>
+
+    <mj-font name="FontAwesome" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </mj-head>
+  <mj-body background-color="#EAF4F4">
+    <mj-section padding="20px">
+      <mj-column>
+        <mj-text mj-class="text">
+          Bonjour,<br />
+          Merci d'avoir pris le temps de remplir le formulaire de contact !<br />
+          Vous trouverez ci-dessous mes coordonnées.
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+
+
+    <mj-section>
+       <mj-column >
+      <mj-text font-family="FontAwesome" font-size="50px"></mj-text>
+      <mj-text mj-class="contact-text"><a href="tel:+33620080726">06 20 08 07 26</a></mj-text>
+
+    </mj-column>
+    <mj-column>
+      
+       <mj-text font-family="FontAwesome" font-size="50px"></mj-text>
+        <mj-text mj-class="contact-text"><a href="mailto:contact@notonlygeek.com">contact@notonlygeek.com</a></mj-text>
+    </mj-column>
+    
+    </mj-section>
+   
+
+
+    
+    <mj-section>
+    <mj-column width="300px" padding-top="20px">
+       
+        <mj-image href="https://www.notonlygeek.com/" src="https://staging.notonlygeek.com/public/logo.svg" />
+    
+    </mj-column>
+    
+      </mj-section>
+
+    <mj-section>
+      <mj-column>
+      <mj-divider padding="20px" border-width="1px" border-style="dashed" border-color="lightgrey" />
+        <mj-text align="left" padding="0 20px">Votre message : </br></br>
+        {{message}}
+        
+        <mj-text>
+
+        
+        
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
