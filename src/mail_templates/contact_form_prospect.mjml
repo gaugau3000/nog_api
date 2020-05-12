@@ -14,7 +14,7 @@
         
       }
       a:hover{
-        color: #FF4641;
+        color: #FF4641 !important;
       }
     </mj-style>
 
