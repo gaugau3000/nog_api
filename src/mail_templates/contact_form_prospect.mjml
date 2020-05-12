@@ -9,7 +9,7 @@
     </mj-attributes>
     <mj-style>
       a {
-        color: inherit;
+        color: #232D41 !important;
         text-decoration: inherit;
         
       }
