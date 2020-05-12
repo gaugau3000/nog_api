@@ -36,13 +36,13 @@
 
     <mj-section>
        <mj-column >
-      <mj-text font-family="FontAwesome" font-size="50px"></mj-text>
+      <mj-text font-family="FontAwesome" font-size="50px"><a href="tel:+33620080726"></a></mj-text>
       <mj-text mj-class="contact-text"><a href="tel:+33620080726">06 20 08 07 26</a></mj-text>
 
     </mj-column>
     <mj-column>
       
-       <mj-text font-family="FontAwesome" font-size="50px"></mj-text>
+       <mj-text font-family="FontAwesome" font-size="50px"><a href="mailto:contact@notonlygeek.com"></a></mj-text>
         <mj-text mj-class="contact-text"><a href="mailto:contact@notonlygeek.com">contact@notonlygeek.com</a></mj-text>
     </mj-column>
     
