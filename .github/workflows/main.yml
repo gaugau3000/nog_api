@@ -20,8 +20,8 @@ jobs:
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
     - name: tag and push to docker repo branch
       run: |
-        docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:"${GITHUB_HEAD_REF}" \
-        && docker push gaugau3000/nog_api:"${GITHUB_HEAD_REF}"
+        docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:"${GITHUB_REF##*/}" \
+        && docker push gaugau3000/nog_api:"${GITHUB_REF##*/}"
     - name: tag and push to docker repo latest
       if: github.ref == 'refs/heads/master'
       run: |
@@ -32,6 +32,8 @@ jobs:
     if: (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
     needs: test_build
     runs-on: ubuntu-16.04
+    env:
+      BRANCH_NAME: "${GITHUB_REF##*/}"
     steps:
     - uses: actions/checkout@v2
     - name: Copy deploy scripts to remote
@@ -45,14 +47,12 @@ jobs:
         port: ${{ secrets.DEPLOY_PORT }}
     - name: set environment variables for staging
       if: github.ref == 'refs/heads/develop'
-      uses: allenevans/set-env@v1.0.0
-      with:
+      env:
         CONTENER_NAME: notonlygeek-api_staging
         NETWORK : notonlygeek_staging
     - name: set environment variables for production
       if: github.ref == 'refs/heads/master'
-      uses: allenevans/set-env@v1.0.0
-      with:
+      env:
         CONTENER_NAME: notonlygeek-api_production
         NETWORK : notonlygeek_production
     - name: deploy api to server
@@ -63,10 +63,10 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: ${{ secrets.DEPLOY_PORT }}
         script_stop: "true"
-        envs: CONTENER_NAME, GITHUB_REPOSITORY,GITHUB_HEAD_REF, NETWORK
+        envs: CONTENER_NAME, GITHUB_REPOSITORY,BRANCH_NAME, NETWORK
         script: >
           chmod +x /tmp/nog_api/deploy_container.sh &&
           CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
-          NETWORK=${NETWORK} GITHUB_HEAD_REF=${GITHUB_HEAD_REF} /tmp/nog_api/deploy_container.sh
+          NETWORK=${NETWORK} BRANCH_NAME=${BRANCH_NAME} /tmp/nog_api/deploy_container.sh
             
         
