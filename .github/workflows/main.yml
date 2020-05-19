@@ -33,10 +33,10 @@ jobs:
     if: (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
     needs: test_build
     runs-on: ubuntu-16.04
-    env:
-      GIT_BRANCH: "${GITHUB_REF##*/}"
     steps:
     - uses: actions/checkout@v2
+    - name: Inject slug/short variables
+      uses: rlespinasse/github-slug-action@v2.x
     - name: Copy deploy scripts to remote
       uses: garygrossgarten/github-action-scp@release
       with:
@@ -66,10 +66,10 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: ${{ secrets.DEPLOY_PORT }}
         script_stop: "true"
-        envs: CONTENER_NAME, GITHUB_REPOSITORY,GIT_BRANCH, NETWORK
+        envs: CONTENER_NAME, GITHUB_REPOSITORY, GITHUB_REF_SLUG, NETWORK
         script: >
           chmod +x /tmp/nog_api/deploy_container.sh &&
           CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
-          NETWORK=${NETWORK} GIT_BRANCH=${GIT_BRANCH} /tmp/nog_api/deploy_container.sh
+          NETWORK=${NETWORK} GITHUB_REF_SLUG=${GITHUB_REF_SLUG} /tmp/nog_api/deploy_container.sh
             
         

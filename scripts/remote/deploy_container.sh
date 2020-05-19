@@ -1,5 +1,5 @@
 #!/bin/bash
-docker_image="${GITHUB_REPOSITORY}":"${GIT_BRANCH}"
+docker_image="${GITHUB_REPOSITORY}":"${GITHUB_REF_SLUG}"
 docker stop "${CONTENER_NAME}" || true
 docker rm "${CONTENER_NAME}" || true
 docker pull "${docker_image}"
