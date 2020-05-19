@@ -20,12 +20,12 @@ jobs:
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
     - name: tag and push to docker repo branch
       run: >
-        docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:${ GITHUB_HEAD_REF }
-        && docker push gaugau3000/nog_api:${ GITHUB_HEAD_REF }
+        docker tag nog_api:tmp gaugau3000/nog_api:"${ GITHUB_HEAD_REF }"
+        && docker push gaugau3000/nog_api:"${ GITHUB_HEAD_REF }"
     - name: tag and push to docker repo latest
       if: github.ref == 'refs/heads/master'
       run: >
-        docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:latest
+        docker tag nog_api:tmp gaugau3000/nog_api:latest
         && docker push gaugau3000/nog_api:latest
 
   deploy:
