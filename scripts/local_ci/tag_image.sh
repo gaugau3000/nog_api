@@ -1,9 +1,9 @@
 #!/bin/bash
 docker login gaugau3000 --password-stdin "${DOCKER_PASSWORD}"
-docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:"${GIT_BRANCH}"
-docker push gaugau3000/nog_api:"${GIT_BRANCH}"
+docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:"${GITHUB_HEAD_REF_SLUG}"
+docker push gaugau3000/nog_api:"${GITHUB_HEAD_REF_SLUG}"
 
-if [ "$GIT_BRANCH" = "master" ]
+if [ "$GITHUB_HEAD_REF_SLUG" = "master" ]
 then
     docker tag gaugau3000/nog_api:tmp gaugau3000/nog_api:latest \
     docker push gaugau3000/nog_api:latest
