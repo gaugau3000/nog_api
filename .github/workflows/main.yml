@@ -13,12 +13,14 @@ jobs:
     - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v2.x
     - uses: whoan/docker-build-with-cache-action@v5
+      if: false
       with:
         image_name: gaugau3000/nog_api
         username: gaugau3000
         password: "${{ secrets.DOCKER_PASSWORD }}"
         image_tag: tmp
     - name : run tests
+      if: false
       run: docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test
     - name: tag and push to docker repo branch
       env:
