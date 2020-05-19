@@ -50,14 +50,14 @@ jobs:
       if: github.ref == 'refs/heads/develop'
       uses: allenevans/set-env@v1.0.0
       with:
-        CONTENER_NAME: notonlygeek-api_staging
-        NETWORK : notonlygeek_staging
+        CONTENER_NAME: 'notonlygeek-api_staging'
+        NETWORK : 'notonlygeek_staging'
     - name: set environment variables for production
       if: github.ref == 'refs/heads/master'
       uses: allenevans/set-env@v1.0.0
       with:
-        CONTENER_NAME: notonlygeek-api_production
-        NETWORK : notonlygeek_production
+        CONTENER_NAME: 'notonlygeek-api_production'
+        NETWORK : 'notonlygeek_production'
     - name: deploy api to server
       uses: appleboy/ssh-action@master
       with:
