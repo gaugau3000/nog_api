@@ -26,8 +26,7 @@ jobs:
       env:
         DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
       run: >
-       chmod +x ./scripts/local_ci/tag_image.sh && 
-       DOCKER_PASSWORD=${DOCKER_PASSWORD} GITHUB_REF_SLUG=${GITHUB_REF_SLUG} ./scripts/local_ci/tag_image.sh
+       DOCKER_PASSWORD=${DOCKER_PASSWORD} GITHUB_REF_SLUG=${GITHUB_REF_SLUG} sh ./scripts/local_ci/tag_image.sh
 
   deploy:
     if: (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
@@ -68,8 +67,7 @@ jobs:
         script_stop: "true"
         envs: CONTENER_NAME, GITHUB_REPOSITORY, GITHUB_REF_SLUG, NETWORK
         script: >
-          chmod +x /tmp/nog_api/deploy_container.sh &&
           CONTENER_NAME=${CONTENER_NAME} GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
-          NETWORK=${NETWORK} GITHUB_REF_SLUG=${GITHUB_REF_SLUG} /tmp/nog_api/deploy_container.sh
+          NETWORK=${NETWORK} GITHUB_REF_SLUG=${GITHUB_REF_SLUG} sh /tmp/nog_api/deploy_container.sh
             
         
