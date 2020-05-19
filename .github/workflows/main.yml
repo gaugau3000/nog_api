@@ -23,7 +23,9 @@ jobs:
     - name: tag and push to docker repo branch
       env:
         DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
-      run: chmod +x ./scripts/local_ci/tag_image.sh && ./scripts/local_ci/tag_image.sh
+      run: >
+       chmod +x ./scripts/local_ci/tag_image.sh && 
+       DOCKER_PASSWORD=${DOCKER_PASSWORD} GITHUB_HEAD_REF_SLUG=${GITHUB_HEAD_REF_SLUG} ./scripts/local_ci/tag_image.sh
 
   deploy:
     if: (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
