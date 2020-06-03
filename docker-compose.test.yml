@@ -9,6 +9,7 @@ services:
     environment:
       MAIl_HOST: mail
       SMTP_PORT: 1025
+      CODECOV_TOKEN:
     depends_on:
       - mail
     networks:

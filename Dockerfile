@@ -8,13 +8,15 @@ WORKDIR /app
 COPY package.json .
 RUN yarn install --production
 
-FROM install_dev as test
+FROM node:12-buster as test
 WORKDIR /app
 COPY --from=install_dev /app .
+COPY scripts/build/entry_test_image.sh .
 ARG MAIl_HOST
 ARG SMTP_PORT
+ARG CODECOV_TOKEN
 EXPOSE 3000
-CMD yarn test && bash <(curl -s https://codecov.io/bash)
+CMD ["./entry_test_image.sh"]
 
 FROM install_dev as build
 WORKDIR /app
