@@ -14,7 +14,7 @@ COPY --from=install_dev /app .
 ARG MAIl_HOST
 ARG SMTP_PORT
 EXPOSE 3000
-CMD [ "yarn", "test"]
+CMD [ "yarn test && bash <(curl -s https://codecov.io/bash)"]
 
 FROM install_dev as build
 WORKDIR /app
