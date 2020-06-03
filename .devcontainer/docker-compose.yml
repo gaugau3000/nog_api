@@ -16,14 +16,14 @@ services:
       MAIl_HOST: mail
       SMTP_PORT: 1025
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports: 
+    ports:
       - 3001:3000
     networks:
       - nog_api
   mail:
     image: mailhog/mailhog
     environment:
-      MH_CORS_ORIGIN: "*"
+      MH_CORS_ORIGIN: '*'
     networks:
       - nog_api
 

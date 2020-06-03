@@ -1,21 +1,21 @@
 /* cSpell:disable */
 {
-	"name": "notonlygeek api",
-    "dockerComposeFile": "docker-compose.yml",
-	"service": "api",
-    "workspaceFolder": "/home/gautier/nog_api",
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash"
-	},
-	"extensions": [
-		"formulahendry.github-actions",
-		"me-dutour-mathieu.vscode-github-actions",
-		"cschleiden.vscode-github-actions",
-		"streetsidesoftware.code-spell-checker",
-		"streetsidesoftware.code-spell-checker-french",
-		"marquesmps.dockerfile-validator",
-		"foxundermoon.shell-format",
-		"timonwong.shellcheck",
-		"attilabuti.vscode-mjml"
-	]
+  "name": "notonlygeek api",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "api",
+  "workspaceFolder": "/home/gautier/nog_api",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "formulahendry.github-actions",
+    "me-dutour-mathieu.vscode-github-actions",
+    "cschleiden.vscode-github-actions",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-french",
+    "marquesmps.dockerfile-validator",
+    "foxundermoon.shell-format",
+    "timonwong.shellcheck",
+    "attilabuti.vscode-mjml"
+  ]
 }

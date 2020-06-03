@@ -5,15 +5,16 @@
 
       <mj-class name="text" color="#232D41" font-size="22px" font-family="Gilroy" line-height="1.5" font-weight="normal" />
       <mj-class name="contact-text" color="#232D41" font-size="22px" font-family="Gilroy" line-height="1.5" font-weight="bold" />
-      <mj-all padding="0" align="center"/>
+      <mj-all padding="0" align="center" />
     </mj-attributes>
     <mj-style>
       a {
         color: #232D41 !important;
         text-decoration: inherit;
-        
+
       }
-      a:hover{
+
+      a:hover {
         color: #FF4641 !important;
       }
     </mj-style>
@@ -35,41 +36,41 @@
 
 
     <mj-section>
-       <mj-column >
-      <mj-image width="50px" href="tel:+33620080726" src="https://staging.notonlygeek.com/public/mail/phone.png"></mj-image>
-      <mj-text mj-class="contact-text"><a href="tel:+33620080726">06 20 08 07 26</a></mj-text>
+      <mj-column>
+        <mj-image width="50px" href="tel:+33620080726" src="https://staging.notonlygeek.com/public/mail/phone.png"></mj-image>
+        <mj-text mj-class="contact-text"><a href="tel:+33620080726">06 20 08 07 26</a></mj-text>
 
-    </mj-column>
-    <mj-column>
-      
-      <mj-image width="50px" href="mailto:contact@notonlygeek.com" src="https://staging.notonlygeek.com/public/mail/envelope.png"></mj-image>
+      </mj-column>
+      <mj-column>
+
+        <mj-image width="50px" href="mailto:contact@notonlygeek.com" src="https://staging.notonlygeek.com/public/mail/envelope.png"></mj-image>
         <mj-text mj-class="contact-text"><a href="mailto:contact@notonlygeek.com">contact@notonlygeek.com</a></mj-text>
-    </mj-column>
-    
+      </mj-column>
+
     </mj-section>
-   
 
 
-    
+
+
     <mj-section>
-    <mj-column width="300px" padding-top="20px">
-       
+      <mj-column width="300px" padding-top="20px">
+
         <mj-image href="https://www.notonlygeek.com/" src="https://staging.notonlygeek.com/public/mail/logo.png" />
-    
-    </mj-column>
-    
-      </mj-section>
+
+      </mj-column>
+
+    </mj-section>
 
     <mj-section>
       <mj-column>
-      <mj-divider padding="20px" border-width="1px" border-style="dashed" border-color="lightgrey" />
+        <mj-divider padding="20px" border-width="1px" border-style="dashed" border-color="lightgrey" />
         <mj-text align="left" padding="0 20px">Votre message : </br></br>
-        {{message}}
-        
+          {{message}}
+
         </mj-text>
 
-        
-        
+
+
       </mj-column>
     </mj-section>
   </mj-body>
