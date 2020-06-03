@@ -16,6 +16,7 @@
     "marquesmps.dockerfile-validator",
     "foxundermoon.shell-format",
     "timonwong.shellcheck",
-    "attilabuti.vscode-mjml"
+    "attilabuti.vscode-mjml",
+    "esbenp.prettier-vscode"
   ]
 }

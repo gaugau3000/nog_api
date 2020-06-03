@@ -8,7 +8,7 @@ const router = new Router({ prefix: '/email' })
 router.post('/', async (ctx: Koa.Context) => {
   const requiredRequestElement = ['from', 'to', 'subject', 'html']
   const isBodyHaveMissingElements = requiredRequestElement
-    .map((n) => ctx.request.body.hasOwnProperty(n))
+    .map((n) => Object.prototype.hasOwnProperty.call(ctx.request.body, n))
     .some((r) => !r)
   if (isBodyHaveMissingElements) {
     ctx.status = 406

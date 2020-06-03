@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import nodemailer, { SentMessageInfo } from 'nodemailer'
 import Mail from 'nodemailer/lib/mailer'
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
 import { MailMessage } from '../types/mail'
@@ -9,19 +9,24 @@ import mjml from 'mjml'
 import path from 'path'
 import mailHeaders from '../mail_templates/mailHeaders'
 
-let sendMail = async (mail: SMTPTransport.Options, transporter: Mail) => {
+const sendMail = async (
+  mail: SMTPTransport.Options,
+  transporter: Mail
+): Promise<SentMessageInfo> => {
   return await transporter.sendMail(mail)
 }
 
-const checkIfSmtpConWorking = async (transporter: Mail) => {
+const checkIfSmtpConWorking = async (transporter: Mail): Promise<true> => {
   return await transporter.verify()
 }
 
-const getSmtpTransport = async (config: SMTPTransport.Options) => {
-  let transporter: Mail = nodemailer.createTransport(config)
+const getSmtpTransport = async (
+  config: SMTPTransport.Options
+): Promise<Mail> => {
+  const transporter: Mail = nodemailer.createTransport(config)
 
   if (await checkIfSmtpConWorking(transporter)) return transporter
-  else throw new Error('Smtp Con Failed')
+  else throw new Error('Connection to SMTP server failed')
 }
 
 export { sendMail, checkIfSmtpConWorking, getSmtpTransport }
@@ -31,12 +36,14 @@ const mailTemplateExt = 'mjml'
 
 export async function genMail(
   templateName: keyof typeof mailHeaders,
-  data: any
+  data: Record<string, unknown>
 ): Promise<MailMessage> {
   const mailTemplateFolder = `${mailTemplateFolderPath}/${templateName}.${mailTemplateExt}`
 
   const mailHeader: any = mailHeaders[templateName]
-  const compiledMailBodyTemplate: any = await fileToString(mailTemplateFolder)
+  const compiledMailBodyTemplate: string = await fileToString(
+    mailTemplateFolder
+  )
 
   const compiledMailBodyTemplateRender = await createRenderer().renderToString(
     getVueApp(compiledMailBodyTemplate, data)
@@ -57,7 +64,7 @@ export async function fileToString(relativePath: string): Promise<string> {
   return file.toString()
 }
 
-export function getVueApp(template: any, data: object) {
+export function getVueApp(template: any, data: Record<string, unknown>) {
   return new vue({
     data() {
       return data

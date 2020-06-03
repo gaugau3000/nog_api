@@ -7,7 +7,7 @@ import * as utils from '../../src/utils/utils'
 jest.mock('../../src/utils/utils')
 const mockedUtils = mocked(utils, true)
 
-let email_body = {
+const email_body = {
   from: 'contact@notonlygeek.com',
   to: 'contact@notonlygeek.com',
   subject: 'Vous avez recu un email depuis le formulaire de contact',
@@ -31,7 +31,7 @@ describe('make a post  request on email with valid attributes ', () => {
 })
 
 describe('make a post  request on /email with test missing attribute ', () => {
-  let email_body_missing_text_element = _.cloneDeep(email_body)
+  const email_body_missing_text_element = _.cloneDeep(email_body)
   delete email_body_missing_text_element.html
 
   it('should return a 406 status and give explaination ', async () => {

@@ -1,5 +1,3 @@
-import Mail from 'nodemailer/lib/mailer'
-
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
 
 export const stmp_config: SMTPTransport.Options = {

@@ -18,7 +18,7 @@ const not_working_stmp_config = {
   port: 21,
 }
 
-let valid_email: SMTPTransport.Options = {
+const valid_email: SMTPTransport.Options = {
   from: 'contact@notonlygeek.com',
   to: 'contact@notonlygeek.com',
   subject: 'Formulaire de contact depuis le site',
